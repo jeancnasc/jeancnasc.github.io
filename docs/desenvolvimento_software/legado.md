@@ -32,11 +32,11 @@ mindmap
 
 ## Definição
 
-Por definição, *legado* é algo cuja responsabilidade foi transmitido de uma pessoa para outra, portando, podemos dizer que o termo ***código legado* se refere a código feito por outra pessoa** e repassado para nossa responsabilidade, mas, na prática, o termo assume um significado mais complexo e subjetivo. Para Pressman (2011, Pag. 36): "um software legado é caracterizado pela longevidade e criticidade de negócio". Em geral, três características se destacam ao se referir a *código legado*: **alto valor agregado**, **uso de tecnologia obsoleta** e **dificuldade de substituição**. 
+Por definição, *legado* é algo cuja responsabilidade foi transmitido de uma pessoa para outra, portando, podemos dizer que o termo ***código legado* se refere a código feito por outra pessoa** e repassado para nossa responsabilidade, mas, na prática, o termo assume um significado mais complexo e subjetivo. Para Pressman (2011, pág. 36): "um software legado é caracterizado pela longevidade e criticidade de negócio". Em geral, três características se destacam ao se referir a *código legado*: **alto valor agregado**, **uso de tecnologia obsoleta** e **dificuldade de substituição**. 
 
 ### Alto valor agregado
 
-Não se pode negar é que ***código legado* tem valor** - caso contrário seria descartado, ou arquivado -, são produtos que **"ainda estão em uso e desempenham um papel fundamental para o negócio"** (Sommerville, 2018, Pag. 237). 
+Não se pode negar é que ***código legado* tem valor** - caso contrário seria descartado, ou arquivado -, são produtos que **"ainda estão em uso e desempenham um papel fundamental para o negócio"** (Sommerville, 2018, pág. 237). 
 
 ### Tecnologia obsoleta
 
@@ -54,7 +54,7 @@ Algo que contribui de forma definitiva para a existência de software legado é 
 
 ## Software difícil de manter
   
-As características discutidas até aqui convergem para uma coisa: *código legado* é difícil de manter. Tanto é que na indústria o termo é frequentemente empregado para se referir a uma base de código **difícil de compreender e modificar** (Feathers, 2013, Pag. viii). Em minha experiência, já vi equipes usarem o termo *código legado* de forma mais pejorativa do que prática, para definir **software que não se deseja dar manutenção**, às vezes por apresentar as características já citadas, mas às vezes sem aferir a qualidade ou implicações para o negócio, apenas por não seguir um novo padrão arquitetural. 
+As características discutidas até aqui convergem para uma coisa: *código legado* é difícil de manter. Tanto é que na indústria o termo é frequentemente empregado para se referir a uma base de código **difícil de compreender e modificar** (Feathers, 2013, pág. viii). Em minha experiência, já vi equipes usarem o termo *código legado* de forma mais pejorativa do que prática, para definir **software que não se deseja dar manutenção**, às vezes por apresentar as características já citadas, mas às vezes sem aferir a qualidade ou implicações para o negócio, apenas por não seguir um novo padrão arquitetural. 
 
 ## Código sem Teste
 

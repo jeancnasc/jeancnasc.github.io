@@ -8,7 +8,7 @@ Um bom tratamento de erro exige do desenvolvedor a compreensão sobre quando e c
 
 ## Definindo o problema
 
-Para demostrar esse problema é apresentado o código abaixo. É um programa simples, ele preenche uma matriz de cem números usando o resultado da divisão de dois número gerados aleatoriamente.
+Para demostrar esse problema é apresentado o código abaixo. É um programa simples, ele preenche uma matriz de cem números usando o resultado da divisão de dois números gerados aleatoriamente.
 
 ```java
 Random r = new Random();
@@ -69,9 +69,9 @@ Abaixo é apresentado as últimas dez linhas da saída do programa.
 1768198173 / 3 = divisão por zero
 ```
 
-O programa parece funcionar bem até a última linha, se o executarmos mais vezes notaremos que isso é uma constante: a última linha impressa sempre informa uma divisão por zero independentemente do valor do divisor. Um desenvolvedor atento pode ter notado a falha deste a primeira versão do programa, para alguns talvez uma segunda revisão mais cuidadosa do código possa revelar a causa do problema, mas para outros esse tipo de falha pode ser incompreensível e frustrante, e somente uma depuração cuidadosa, e talvez trabalhosa, do código vai tornar a causa da falha evidente. Na vida real,  é muito comum estarmos nesse último grupo.
+O programa parece funcionar bem até a última linha, se o executarmos mais vezes notaremos que isso é uma constante: a última linha impressa sempre informa uma divisão por zero independentemente do valor do divisor. Um desenvolvedor atento pode ter notado a falha deste a primeira versão do programa, para alguns talvez uma segunda revisão mais cuidadosa do código possa revelar a causa do problema, mas para outros esse tipo de falha pode ser incompreensível e frustrante, e somente uma depuração cuidadosa, e talvez trabalhosa, do código vai tornar a causa da falha evidente. Na vida real, é muito comum estarmos nesse último grupo.
 
-Para evidenciar o problema vamos imprimir a pilha de chamada,  usando o método printStackTrace - não recomendo o uso desse método em código de produção, mas para essa demonstração é aceitável.
+Para evidenciar o problema vamos imprimir a pilha de chamada, usando o método *printStackTrace* - não recomendo o uso desse método em código de produção, mas para essa demonstração é aceitável.
 
 ```java
 Random r = new Random();
@@ -93,7 +93,7 @@ for (int c = 0; c <= 100; c++) {
 }
 ```
 
-Agora a saída deixa claro a causa falha: um acesso indevido a uma posição inexistente do matriz **resultado**. Podemos corrigir o problema alterando o comparador usado na condição do laço de repetição de menor ou igual (\<=) para menor (\<). Porém, vamos nos concentrar em outro erro: o tratamento de exceção "genérica".
+Agora a saída deixa claro a causa falha: um acesso indevido a uma posição inexistente do matriz *resultado*. Podemos corrigir o problema alterando o comparador usado na condição do laço de repetição de menor ou igual (\<=) para menor (\<). Porém, vamos nos concentrar em outro erro: o tratamento de exceção "genérica".
 
 ```text
 ...
@@ -140,10 +140,10 @@ Esse erro é muito sutil e geralmente difícil de detectar, pois a taxa de exce�
 
 - O usuário solicita um novo cadastro no sistema (esse usuário já possui um cadastro e o sistema deveria negar um novo);
 - O sistema usa o método do exemplo para consultar se o CPF já tem um cadastro;
-- Porém a consulta gera um erro diferente de resultado vazio, por exemplo um timeout;
+- Porém, a consulta gera um erro diferente de resultado vazio, por exemplo, um timeout;
 - O erro é capturado e tratado retornando nulo;
 - Então o sistema assume que por retornar nulo o usuário não tem cadastro e, se nenhum outro mecanismo impedir, o cadastro será duplicado.
-- A partir daqui outras partes do sistema que dependem da unicidade do cadastro podem falhar.
+- A partir desse ponto outras partes do sistema que dependem da unicidade do cadastro podem falhar.
 
 :::
 
@@ -161,7 +161,7 @@ try {
 }
 ```
 
-Sabemos que nesse trecho existem dois erros distintos acontecendo: um pela divisão por zero, e outro por acesso a uma posição inexistente da matriz. Porém, a exceção capturada não fornece nenhuma informação sobre o erro e assim ambos são tratados com a mensagem "divisão por zero". Percebemos que erros de divisão por zero emitem uma exceção mais específica: **ArithmeticException**, portanto, vamos modificar o código para usar essa exceção mais específicas.
+Sabemos que nesse trecho existem dois erros distintos acontecendo: um pela divisão por zero, e outro por acesso a uma posição inexistente da matriz. Porém, a exceção capturada não fornece nenhuma informação sobre o erro e assim ambos são tratados com a mensagem "divisão por zero". Percebemos que erros de divisão por zero emitem uma exceção mais específica: *ArithmeticException*, portanto, vamos modificar o código para usar essa exceção mais específica.
 
 ```java
 try {
@@ -192,9 +192,9 @@ at com.codificandonamarra.App4.main(App4.java:16)
 
 :::danger Evite fazer: Escolher o tratamento correto a partir de atributos da exceção
 
-Poderíamos verificar a mensagem dentro da exceção para tomar uma decisão sobre o tratamento correto, no entanto esse campo não é projetado especificamente para isso, por exemplo o lançador pode alterar a mensagem sem alterar o motivo de seu lançamento. De fato, a partir da versão 17 do Java, as mensagens de algumas exceções lançadas pela JVM foram alteradas para melhorar o diagnóstico do erro.
+Poderíamos verificar a mensagem dentro da exceção para tomar uma decisão sobre o tratamento correto, no entanto, esse campo não é projetado especificamente para isso, por exemplo, o lançador pode alterar a mensagem sem alterar o motivo de seu lançamento. De fato, a partir da versão 17 do Java, as mensagens de algumas exceções lançadas pela JVM foram alteradas para melhorar o diagnóstico do erro.
 
-Exceções podem definir outros campos além da mensagem, alguns desse campos podem ser projetados para tomar decisões de tratamento de erro. Em geral, eu prefiro não tomar decisões com base nesses campos, a não ser para formatar ou incluí-los na mensagem ao usuário.
+Exceções podem definir outros campos além da mensagem, alguns desses campos podem ser projetados para tomar decisões de tratamento de erro. Em geral, eu prefiro não tomar decisões com base nesses campos, a não ser para formatar ou incluí-los na mensagem ao usuário.
 
 :::
 
@@ -221,7 +221,7 @@ for (int c = 0; c <= 100; c++) {
 }
 ```
 
-Novamente a saída da aplicação apresenta a mensagem de erro de divisão por zero mesmo com divisor diferente de zero, desta vez a o problema é um *overflow* causado pelo método *multiplyExact*.
+Novamente a saída da aplicação apresenta a mensagem de erro de divisão por zero mesmo com divisor diferente de zero, desta vez o problema é um **overflow** causado pelo método *multiplyExact*.
 
 ```text
 ...
@@ -234,11 +234,11 @@ at com.codificandonamarra.App5.main(App5.java:16)
 
 :::info Definição: Graus de abstração ou especificidade
 
-Como qualquer classe, uma exceção pode apresentar graus deferentes de abstração, algumas (como Throwable, Exception e RuntimeException) são tão abstratas que a única informação que passam é que são exceções. Para outras (como IOException, ArithmeticException) conseguimos determinar uma categoria para o erro.
+Como qualquer classe, uma exceção pode apresentar graus deferentes de abstração, algumas (como *Throwable*, *Exception* e *RuntimeException*) são tão abstratas que a única informação que passam é que são exceções. Para outras (como *IOException*, *ArithmeticException*) conseguimos determinar uma categoria para o erro.
 
 :::
 
-A exceção específica que precisamos capturar é algo como DivideByZeroException, infelizmente a linguagem Java não fornece uma exceção específica para divisão por zero, portando teremos que criar uma e lançar por conta própria. Abaixo está a versão final do programa, tratando única e exclusivamente o caso em que zero é passado como divisor.
+A exceção específica que precisamos capturar é algo como *DivideByZeroException*, infelizmente a linguagem Java não fornece uma exceção específica para divisão por zero, portando teremos que criar uma e lançar por conta própria. Abaixo está a versão final do programa, tratando única e exclusivamente o caso em que zero é passado como divisor.
 
 ```java
 public static void main(String[] args) {
@@ -383,15 +383,15 @@ Note que a exceção criada não é específica, seu nível de abstração não 
 
 ## Lançar exceções específicas vs genéricas
 
-O exemplo anterior pode ter suscitado uma dúvida sobre o que é melhor: lançar uma exceção específica ou uma exceção genérica. Note que que optar por sempre lançar exceções específicas significa criar um conjunto grande de classe de exceção e, como qualquer código, existe certo custo envolvido em sua manutenção, isso pode levar a uma sobrecarga desnecessária ao desenvolvimento. Ao invés disso, Feathers (Em MARTIN, Código Limpo, 2011, p. 107) sugere: "defina as classes de exceção segundo as necessidades do chamador".
+O exemplo anterior pode ter suscitado uma dúvida sobre o que é melhor: lançar uma exceção específica ou uma exceção genérica. Note que optar por sempre lançar exceções específicas significa criar um conjunto grande de classe de exceção e, como qualquer código, existe certo custo envolvido em sua manutenção, isso pode levar a uma sobrecarga desnecessária ao desenvolvimento. Ao invés disso, Feathers (Em MARTIN, Código Limpo, 2011, p. 107) sugere: "defina as classes de exceção segundo as necessidades do chamador".
 
-Imagine um formulário de cadastro que emite alertas sobre a validade dos valores inseridos pelo usuário, para cada campo é criada uma exceção específica: CpfInvalidoException para o campo CPF, EmailInvalidoException para o campo e-mail, NomeDeUsuarioJaExisteException para o nome do usuário. Para todas essas exceções, o chamador, vai aplicar um único tratamento possível: informar o usuário sobre o problema para que ele mesmo o corrija. Portando, pode-se substituir todas essas exceções por uma única exceção CampoInvalidoException sem grande prejuízo, afinal existe apenas um único tratamento.
+Imagine um formulário de cadastro que emite alerta sobre a validade dos valores inseridos pelo usuário, para cada campo é criada uma exceção específica: *CpfInvalidoException* para o campo CPF, *EmailInvalidoException* para o campo e-mail, *NomeDeUsuarioJaExisteException* para o nome do usuário. Para todas essas exceções, o chamador, vai aplicar um único tratamento possível: informar o usuário sobre o problema para que ele mesmo o corrija. Portando, pode-se substituir todas essas exceções por uma única exceção *CampoInvalidoException* sem grande prejuízo, afinal existe apenas um único tratamento.
 
-Por outro lado, usar exceções genéricas pode dificultar o tratamento mais específico. Foi isso que aconteceu no exemplo da sessão [Acertando os níveis de abstração](#acertando-os-níveis-de-abstração), a JVM não lançava a exceção especifica que precisávamos, ela não esperava que iriamos precisar dela. Isso é um problema para qualquer um que desenvolve código compartilhado, como bibliotecas: é difícil definir as classes conforme o chamador, pois não o conhecemos. Note que nem sempre o contorno do lançamento de uma exceção genérica está disponível e de fácil implementação, porém, traduzir ume exceção específica para uma mais genérica é simples. Portanto, nessa situação, pode ser preferível optar por lançar exceções mais específicas, e aceitar os custos de manter uma hierarquia grande de exceções consistente.
+Por outro lado, usar exceções genéricas pode dificultar o tratamento mais específico. Foi isso que aconteceu no exemplo da sessão [Acertando os níveis de abstração](#acertando-os-níveis-de-abstração), a JVM não lançava a exceção especifica que precisávamos. Isso é um problema para qualquer um que desenvolve código compartilhado, como bibliotecas: é difícil definir as classes conforme o chamador, pois não o conhecemos. Note que nem sempre o contorno do lançamento de uma exceção genérica está disponível e de fácil implementação, porém, traduzir uma exceção específica para uma mais genérica é simples. Portanto, nessa situação, pode ser preferível optar por lançar exceções mais específicas, e aceitar os custos de manter uma hierarquia grande de exceções consistente.
 
 ## Lançar exceções base da hierarquia
 
-Em muitas linguagens todas as exceções herdem de uma única classe. Em Java todas herdam de Exception, não recomendo lançar exceções dessa classe por um detalhe da linguagem Java: ela é uma exceção verificada. Porém, apesar de poder ser vista como uma má prática, com base na necessidade do chamador é possível lançar RuntimeException, a base de todas as exceções não verificadas, quando não se deseja, ou não há expectativa, para um tratamento específico do erro lançado. Isso permite adiar a criação de exceções específicas até o momento em que elas são necessárias. Nesse caso, deve-se restringir essa prática a código em que o chamador e lançador estão no mesmo repositório de código, isso permite que qualquer desenvolvedor possa alterar para uma exceção mais específica sem dificuldade.
+Em muitas linguagens todas as exceções herdem de uma única classe. Em Java todas herdam de *Exception*, não recomendo lançar exceções dessa classe por um detalhe da linguagem Java: ela é uma exceção verificada. Porém, apesar de poder ser vista como uma má prática, com base na necessidade do chamador é possível lançar *RuntimeException*, a base de todas as exceções não verificadas, quando não se deseja, ou não há expectativa, para um tratamento específico do erro lançado. Isso permite adiar a criação de exceções específicas até o momento em que elas são necessárias. Nesse caso, deve-se restringir essa prática a código em que o chamador e lançador estão no mesmo repositório de código, isso permite que qualquer desenvolvedor possa alterar para uma exceção mais específica sem dificuldade.
 
 ## Conclusão
 
