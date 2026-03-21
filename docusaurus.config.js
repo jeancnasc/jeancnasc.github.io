@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const {themes} = require('prism-react-renderer');
+const { themes } = require('prism-react-renderer');
 const lightCodeTheme = themes.vsLight;
 const darkCodeTheme = themes.vsDark;
 
@@ -23,7 +23,6 @@ const config = {
   projectName: 'jeancnasc.github.io', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -43,15 +42,14 @@ const config = {
           //editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
-           routeBasePath: '/',
-           showReadingTime: true,
-           blogTitle: 'Blog',
-           
-           feedOptions: {
+          routeBasePath: '/',
+          showReadingTime: true,
+          blogTitle: 'Blog',
+          feedOptions: {
             type: 'all',
             copyright: `Copyright © ${new Date().getFullYear()} Jean Carneiro do Nascimento.`
-           }
-          
+          }
+
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -63,7 +61,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      metadata: [{name: 'keywords', content: 'blog, analise e desenvolvimento de sistemas, software, engenharia de software, codigo limpo, clean code, arquitetura lima, clean architecture, domain driven design, ddd, test driven development, tdd'}],
+      metadata: [{ name: 'keywords', content: 'blog, analise e desenvolvimento de sistemas, software, engenharia de software, codigo limpo, clean code, arquitetura lima, clean architecture, domain driven design, ddd, test driven development, tdd' }],
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false
@@ -113,7 +111,7 @@ const config = {
               },
             ],
           },
-          
+
           {
             title: 'Redes Socias',
             items: [
@@ -124,7 +122,7 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/jeancnasc',
-              }              
+              }
             ],
           },
         ],
@@ -133,13 +131,28 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['batch', 'java', 'powershell','mermaid']
+        additionalLanguages: ['batch', 'java', 'powershell', 'mermaid']
       }
     }),
-    markdown: {
-      mermaid: true
+  markdown: {
+    mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
+
+  future: {
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true
     },
-    themes: ['@docusaurus/theme-mermaid']
+    experimental_faster: {
+      rspackBundler: true,
+      rspackPersistentCache: true,
+      ssgWorkerThreads: true
+    }
+  }
 };
 
 module.exports = config;
